@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Locations" %>
+
+<h1>Locations</h1>
+
+<%= form_with url: :locations, method: :get do |form| %>
+  <%= form.text_field :place %>
+  <%= form.select :distance,  (1..20) %>
+  <%= form.submit 'search' %>
+<% end %>
+
+<div id="locations">
+  <% @locations.each do |location| %>
+    <%= render location %>
+    <p>
+      <%= link_to "Show this location", location %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New location", new_location_path %>
